@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeowAddons - ChatTriggers Module</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: #0a0a0a;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .main-tile {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+            position: relative;
+        }
+
+        .title-container {
+            text-align: center;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 2.4em;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 800;
+            margin-bottom: 15px;
+        }
+
+        .info-bar {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+
+        .info-item {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(5px);
+            border-radius: 8px;
+            padding: 8px 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9em;
+            transition: all 0.2s ease;
+        }
+
+        .version {
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+        }
+
+        .tags {
+            border: 1px solid #FFC107;
+            color: #FFC107;
+        }
+
+        .dependencies {
+            border: 1px solid #9C27B0;
+            color: #9C27B0;
+        }
+
+        .description {
+            color: #ccc;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .link {
+            padding: 12px 25px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1em;
+        }
+
+        .link:hover {
+            transform: translateY(-2px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .dependency-link {
+            color: inherit;
+            text-decoration: none;
+            transition: all 0.2s ease;
+        }
+
+        .dependency-link:hover {
+            opacity: 0.8;
+        }
+
+        @media (max-width: 480px) {
+            .main-tile {
+                padding: 20px;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+            
+            .info-item {
+                font-size: 0.8em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-tile">
+        <div class="title-container">
+            <h1 class="title">MeowAddons</h1>
+            <div class="info-bar">
+                <div class="info-item version">
+                    <i class="fas fa-code-branch"></i>
+                    v1.2.0
+                </div>
+                <div class="info-item tags">
+                    <i class="fas fa-tag"></i>
+                    Utility • QOL
+                </div>
+                <div class="info-item dependencies">
+                    <i class="fas fa-link"></i>
+                    <a href="#" class="dependency-link">ExampleDependency</a>
+                </div>
+            </div>
+        </div>
+
+        <p class="description">
+            A collection of quality-of-life improvements and utilities for Minecraft through ChatTriggers. 
+            Enhance your gaming experience with various client-side modifications and helpful features.
+        </p>
+
+        <div class="links">
+            <a href="https://github.com/yourusername/MeowAddons" class="link">
+                <i class="fab fa-github"></i>
+                GitHub Repository
+            </a>
+            <a href="#" class="link">
+                <i class="fas fa-book-open"></i>
+                Documentation
+            </a>
+        </div>
+    </div>
+</body>
+</html>
