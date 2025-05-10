@@ -132,7 +132,19 @@
         .dependency-link:hover {
             opacity: 0.8;
         }
-
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+        .version-badge {
+            text-align: center;
+            margin: -10px 0 25px 0;
+            color: #4CAF50;
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
         @media (max-width: 480px) {
             .main-tile {
                 padding: 20px;
@@ -153,9 +165,9 @@
         <div class="title-container">
             <h1 class="title">MeowAddons</h1>
             <div class="info-bar">
-                <div class="info-item version">
+                <div class="info-item version" id = "version-display">
                     <i class="fas fa-code-branch"></i>
-                    v1.2.0
+                    v???
                 </div>
                 <div class="info-item tags">
                     <i class="fas fa-tag"></i>
@@ -163,7 +175,7 @@
                 </div>
                 <div class="info-item dependencies">
                     <i class="fas fa-link"></i>
-                    <a href="#" class="dependency-link">ExampleDependency</a>
+                    ChatTriggers
                 </div>
             </div>
         </div>
@@ -175,13 +187,29 @@
         <div class="links">
             <a href="https://github.com/kiwidotzip/MeowAddons" class="link">
                 <i class="fab fa-github"></i>
-                GitHub Repository
+                GitHub
             </a>
-            <a href="#" class="link">
+            <a href="https://chattriggers.com/modules/v/MeowAddons" class="link">
+                <img src="assets/ct.png" class="btn-icon">
+                CT
+            </a>
+            <a href="docs.html" class="link">
                 <i class="fas fa-book-open"></i>
-                Documentation
+                Docs
             </a>
         </div>
     </div>
+    <script>
+    async function fetchLatestVersion() {
+        try {
+            const response = await fetch('https://api.github.com/repos/kiwidotzip/MeowAddons/releases/latest');
+            const data = await response.json();
+            document.getElementById('version-display').innerHTML = `<i class="fas fa-code-branch"></i>${data.tag_name}`
+        } catch(error) {
+            document.getElementById('version-display').innerHTML = 'v???';
+        }
+    }
+    fetchLatestVersion()
+    </script>
 </body>
 </html>

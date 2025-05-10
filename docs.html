@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MeowAddons Documentation</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        body {
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.85), 
+                rgba(0, 0, 0, 0.85)),
+                url('assets/background.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            color: white;
+            padding: 40px 20px;
+            opacity: 0;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        .main-tile {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 1000px;
+            margin: 0 auto;
+            box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(20px);
+            opacity: 0;
+            animation: slideUp 0.6s ease 0.3s forwards;
+        }
+
+        @keyframes slideUp {
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: bold;
+        }
+
+        .nav-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .nav-button {
+            display: inline-block;
+            color: white;
+            text-decoration: none;
+            padding: 10px 25px;
+            margin: 0 10px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .docs-section {
+            margin: 30px 0;
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+
+        .category-divider {
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+            border: none;
+            margin: 40px 0;
+            opacity: 0.3;
+        }
+
+        /* Installation Section */
+        .install-steps li {
+            margin: 15px 0;
+            padding: 10px 0; /* Reduced padding */
+            background: none !important; /* Remove background */
+            position: relative;
+            list-style-position: inside;
+        }
+
+        .install-steps li:not(:last-child)::after {
+            content: none; /* Remove separator lines */
+        }
+
+        .install-steps code {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 3px 6px;
+            border-radius: 4px;
+        }
+
+        .github-link {
+            color: #4ecdc4 !important;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .github-link:hover {
+            color: #7fffd4 !important;
+            text-decoration: underline;
+        }
+
+        /* Features Section */
+        .feature-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            gap: 20px;
+        }
+
+        .feature-header h2 {
+            margin: 0;
+            white-space: nowrap;
+        }
+
+        .feature-search-container {
+            flex-grow: 1;
+            max-width: 300px;
+        }
+
+        #feature-search {
+            width: 100%;
+            padding: 13px 25px;
+            border-radius: 8px;
+            border: 1px solid rgba(255,255,255,0.15);
+            background: rgba(255, 255, 255, 0.08);
+            color: white;
+            font-size: 1em;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        #feature-search::placeholder {
+            color: rgba(255,255,255,0.6);
+        }
+
+        #feature-search:focus {
+            outline: none;
+            border-color: rgba(78, 205, 196, 0.4);
+            box-shadow: 0 0 20px rgba(78, 205, 196, 0.2);
+            background: rgba(255, 255, 255, 0.12);
+        }
+
+        .feature-card {
+            background: rgba(0, 0, 0, 0.25);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            position: relative;
+        }
+
+        .feature-card:not(:last-child)::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            right: 20px;
+            height: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+
+        /* Commands Section */
+        .command-list {
+            margin-top: 30px;
+        }
+
+        .command-entry {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin: 15px 0;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+        }
+
+        .command-entry:not(:last-child) {
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 25px;
+            margin-bottom: 25px;
+        }
+
+        .command-box {
+            flex-shrink: 0;
+            position: relative;
+            width: 180px;
+        }
+
+        .command-text {
+            display: block;
+            padding: 10px 15px;
+            border-radius: 6px;
+            font-family: monospace;
+            background: rgba(0, 0, 0, 0.4);
+            color: #ff6b6b;
+        }
+
+        .copy-btn {
+            position: absolute;
+            right: 8px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #4ecdc4;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .command-desc {
+            flex-grow: 1;
+            color: #ccc;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .command-aliases {
+            margin-top: 8px;
+            font-size: 0.85em;
+            color: #4ecdc4;
+        }
+
+        @media (max-width: 768px) {
+            .feature-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .feature-search-container {
+                max-width: 100%;
+                width: 100%;
+            }
+            
+            .main-tile {
+                padding: 25px;
+            }
+            
+            .nav-button {
+                margin: 5px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="main-tile">
+        <h1 class="title">MeowAddons Documentation</h1>
+        
+        <div class="nav-container">
+            <a href="index.html" class="nav-button">Home</a>
+            <a href="docs.html" class="nav-button">Documentation</a>
+        </div>
+
+        <!-- Installation Section -->
+        <div class="docs-section" data-feature="installation">
+            <h2 class="category-title">🚀 Installation</h2>
+            <div class="install-steps">
+                <ol>
+                    <li>Download from <a href="#" class="github-link">GitHub Releases</a></li>
+                    <li>Place in ChatTriggers modules folder</li>
+                    <li>Reload using <code>/ct reload</code></li>
+                </ol>
+            </div>
+        </div>
+
+        <hr class="category-divider">
+
+        <!-- Features Section -->
+        <div class="docs-section" data-feature="fishing">
+            <div class="feature-header">
+                <h2 class="category-title">✨ Features</h2>
+                <div class="feature-search-container">
+                    <input type="text" id="feature-search" placeholder="Search features...">
+                </div>
+            </div>
+
+            <div class="feature-card">
+                <h3>🎣 Auto-Fishing</h3>
+                <ul>
+                    <li>Real-time bobber detection</li>
+                    <li>Customizable delay settings</li>
+                    <li>Weather-based adjustments</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3>🎒 Smart Inventory</h3>
+                <ul>
+                    <li>Multiple sorting presets</li>
+                    <li>Custom layout support</li>
+                    <li>Quick-stack optimization</li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="category-divider">
+
+        <!-- Command List -->
+        <div class="docs-section command-list">
+            <h2 class="category-title">⚡ Commands</h2>
+            
+            <div class="command-entry">
+                <div class="command-box">
+                    <span class="command-text">/meow help
+                        <button class="copy-btn" data-cmd="/meow help">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="command-desc">
+                    Display help menu with all available commands
+                    <div class="command-aliases">Aliases: /mhelp, /mh</div>
+                </div>
+            </div>
+
+            <div class="command-entry">
+                <div class="command-box">
+                    <span class="command-text">/meow config
+                        <button class="copy-btn" data-cmd="/meow config">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="command-desc">
+                    Open configuration interface
+                    <div class="command-aliases">Aliases: /mconfig, /mc</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Copy functionality
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const cmd = e.currentTarget.dataset.cmd;
+                navigator.clipboard.writeText(cmd);
+                
+                const icon = e.currentTarget.querySelector('i');
+                icon.classList.remove('fa-copy');
+                icon.classList.add('fa-check');
+                
+                setTimeout(() => {
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-copy');
+                }, 2000);
+            });
+        });
+
+        // Feature search
+        document.getElementById('feature-search').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            document.querySelectorAll('[data-feature]').forEach(section => {
+                const text = section.textContent.toLowerCase();
+                section.style.display = text.includes(term) ? 'block' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>
