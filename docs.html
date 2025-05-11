@@ -97,22 +97,80 @@
         }
 
         /* Installation Section */
-        .install-steps li {
-            margin: 15px 0;
-            padding: 10px 0; /* Reduced padding */
-            background: none !important; /* Remove background */
+        .install-method-group {
             position: relative;
-            list-style-position: inside;
+            margin: 20px 0;
         }
 
-        .install-steps li:not(:last-child)::after {
-            content: none; /* Remove separator lines */
-        }
-
-        .install-steps code {
+        .install-method {
+            position: relative;
+            padding: 15px;
             background: rgba(0, 0, 0, 0.3);
-            padding: 3px 6px;
+            border-radius: 8px;
+            border: 1px solid #4ecdc455;
+        }
+
+        .method-label {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: #4ecdc4;
+            color: black;
+            padding: 2px 8px;
             border-radius: 4px;
+            font-size: 0.8em;
+            font-weight: bold;
+        }
+
+        .alternative-toggle {
+            display: inline-block;
+            margin: 15px 0;
+            padding: 8px 20px;
+            background: rgba(255,107,107,0.15);
+            color: #ff6b6b;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,107,107,0.3);
+        }
+
+        .alternative-toggle:hover {
+            background: rgba(255,107,107,0.25);
+            transform: translateY(-2px);
+        }
+
+        .alternative-toggle::after {
+            content: "▾";
+            margin-left: 8px;
+            font-size: 0.9em;
+        }
+
+        .alternative-methods {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            margin-left: 15px;
+            border-left: 2px solid rgba(255,107,107,0.2);
+        }
+
+        .alternative-toggle:hover + .alternative-methods,
+        .alternative-methods:hover {
+            max-height: 200px;
+        }
+
+        .alternative-content {
+            padding: 15px 0 0 20px;
+        }
+
+        .alternative-methods h4 {
+            color: #ff6b6b;
+            margin: 0 0 10px;
+            font-weight: 500;
+        }
+
+        .alternative-methods ul {
+            padding-left: 20px;
         }
 
         .github-link {
@@ -232,6 +290,11 @@
             color: #4ecdc4;
             cursor: pointer;
             padding: 4px;
+            transition: color 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            color: #7fffd4;
         }
 
         .command-desc {
@@ -245,6 +308,84 @@
             margin-top: 8px;
             font-size: 0.85em;
             color: #4ecdc4;
+        }
+
+        .modern-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0;
+        }
+
+        .feature-point {
+            padding: 18px;
+            margin: 12px 0;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 10px;
+            border-left: 4px solid transparent;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-point:hover {
+            background: rgba(78, 205, 196, 0.05);
+            border-left-color: #4ecdc4;
+            transform: translateX(10px);
+        }
+
+        .point-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 8px;
+        }
+
+        .point-icon {
+            font-size: 1.4em;
+            filter: drop-shadow(0 0 5px rgba(78, 205, 196, 0.3));
+        }
+
+        .point-title {
+            font-weight: 600;
+            color: #4ecdc4;
+            position: relative;
+        }
+
+        .point-title::after {
+            content: "";
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+        }
+
+        .point-desc {
+            color: #aaa;
+            font-size: 0.95em;
+            line-height: 1.5;
+            margin-left: 42px;
+        }
+
+        .feature-point::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(78, 205, 196, 0.1),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .feature-point:hover::before {
+            left: 100%;
         }
 
         @media (max-width: 768px) {
@@ -281,12 +422,124 @@
         <!-- Installation Section -->
         <div class="docs-section" data-feature="installation">
             <h2 class="category-title">🚀 Installation</h2>
-            <div class="install-steps">
-                <ol>
-                    <li>Download from <a href="#" class="github-link">GitHub Releases</a></li>
-                    <li>Place in ChatTriggers modules folder</li>
-                    <li>Reload using <code>/ct reload</code></li>
-                </ol>
+            <div class="install-method-group">
+                <div class="install-method">
+                    <code>/ct import MeowAddons</code>
+                    <span class="method-label">CT</span>
+                </div>
+                <button class="alternative-toggle">Alternative Methods</button>
+                <div class="alternative-methods">
+                    <div class="alternative-content">
+                        <h4>Manual Installation</h4>
+                        <ul>
+                            <li>Download from <a href="https://github.com/kiwidotzip/MeowAddons/releases/latest" class="github-link">GitHub</a></li>
+                            <li>Extract the archive</li>
+                            <li>Access the CT modules folder using <code>/ct files</code></li>
+                            <li>Place the extracted folder in ChatTriggers modules folder</li>
+                            <li>Then reload using <code>/ct reload</code></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <hr class="category-divider">
+
+        <!-- Command List -->
+        <div class="docs-section command-list">
+            <h2 class="category-title">⚡ Commands</h2>
+            
+            <div class="command-entry">
+                <div class="command-box">
+                    <span class="command-text">/ma help
+                        <button class="copy-btn" data-cmd="/ma help">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="command-desc">
+                    Display help menu with all available commands
+                    <div class="command-aliases">Aliases: /meowaddons help, /meowa help</div>
+                </div>
+            </div>
+
+            <div class="command-entry">
+                <div class="command-box">
+                    <span class="command-text">/meowaddons
+                        <button class="copy-btn" data-cmd="/ma">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="command-desc">
+                    Open configuration interface
+                    <div class="command-aliases">Aliases: /meowaddons, /meowa</div>
+                </div>
+            </div>
+            <div class="command-entry">
+                <div class="command-box">
+                    <span class="command-text">/meowaddons gui
+                        <button class="copy-btn" data-cmd="/ma gui">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="command-desc">
+                    Open GUI Editor
+                    <div class="command-aliases">Aliases: /meowaddons gui, /meowa gui</div>
+                </div>
+            </div>
+            <div class="command-entry">
+                <div class="command-box">
+                    <span class="command-text">/macarry help
+                        <button class="copy-btn" data-cmd="/macarry help">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="command-desc">
+                    Opens the Carry commands list
+                    <div class="command-aliases">Aliases: /carry help</div>
+                </div>
+            </div>
+            <div class="command-entry">
+                <div class="command-box">
+                    <span class="command-text">/dgcarry help
+                        <button class="copy-btn" data-cmd="/madgcarry help">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="command-desc">
+                    Open the Dungeon carry command list
+                    <div class="command-aliases">Aliases: /dgcarry help</div>
+                </div>
+            </div>
+            <div class="command-entry">
+                <div class="command-box">
+                    <span class="command-text">/meowcount
+                        <button class="copy-btn" data-cmd="/meowcount">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="command-desc">
+                    Displays the number of times you've meowed!
+                    <div class="command-aliases">Aliases: none</div>
+                </div>
+            </div>
+            <div class="command-entry">
+                <div class="command-box">
+                    <span class="command-text">/meowaddons update
+                        <button class="copy-btn" data-cmd="/ma update">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </span>
+                </div>
+                <div class="command-desc">
+                    Checks for updates
+                    <div class="command-aliases">Aliases: /meowaddons update, /meowa update</div>
+                </div>
             </div>
         </div>
 
@@ -302,62 +555,232 @@
             </div>
 
             <div class="feature-card">
-                <h3>🎣 LEMa</h3>
-                <ul>
-                    <li>NOOOO</li>
-                    <li>meow</li>
-                    <li>meow</li>
+                <h3>💬 Chat</h3>
+                <ul class="modern-list">
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">✨</span>
+                            <span class="point-title">Chat cleaner</span>
+                        </div>
+                        <p class="point-desc">Regex-based filtering - Customisation ability coming soon!</p>
+                    </li>
+                    <li class="feature-point"> 
+                        <div class="point-header">
+                            <span class="point-icon">✨</span>
+                            <span class="point-title">Chat Formatter</span>
+                        </div>
+                        <p class="point-desc">Formats the guild and party messages.</p>
+                    </li>
+                    <li class="feature-point"> 
+                        <div class="point-header">
+                            <span class="point-icon">✨</span>
+                            <span class="point-title">Join/leave message Formatter</span>
+                        </div>
+                        <p class="point-desc">Formats the guild and friend join/leave messages.</p>
+                    </li>
+                    <li class="feature-point"> 
+                        <div class="point-header">
+                            <span class="point-icon">✨</span>
+                            <span class="point-title">BetterAH/BetterBZ</span>
+                        </div>
+                        <p class="point-desc">Formats the bazaar and auction house messages.</p>
+                    </li>
+                    <li class="feature-point"> 
+                        <div class="point-header">
+                            <span class="point-icon">🤖</span>
+                            <span class="point-title">Party commands</span>
+                        </div>
+                        <p class="point-desc">Adds various party commands! (alias is !)</p>
+                    </li>
+                    <li class="feature-point"> 
+                        <div class="point-header">
+                            <span class="point-icon">🐱</span>
+                            <span class="point-title">Auto-meow</span>
+                        </div>
+                        <p class="point-desc">Automatically meows (a total of 7 randomised responses) when someone says meow!</p>
+                    </li>
+                    <li class="feature-point"> 
+                        <div class="point-header">
+                            <span class="point-icon">🐱</span>
+                            <span class="point-title">Meow sounds</span>
+                        </div>
+                        <p class="point-desc">Plays cat sounds when someone says meow.</p>
+                    </li>
                 </ul>
             </div>
-
             <div class="feature-card">
-                <h3>🎒 Smart Inventory</h3>
-                <ul>
-                    <li>Multiple sorting presets</li>
-                    <li>Custom layout support</li>
-                    <li>Quick-stack optimization</li>
+                <h3>🏝 Skyblock General</h3>
+                <ul class="modern-list">
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🏹</span>
+                            <span class="point-title">Arrow poison tracker</span>
+                        </div>
+                        <p class="point-desc">Tracks the twilight/toxic arrow poison you have in your inventory.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🧹</span>
+                            <span class="point-title">No clutter</span>
+                        </div>
+                        <p class="point-desc">Hides lightning bolts.</p>
+                        <p class="point-desc">Hides death animation.</p>
+                        <p class="point-desc">Hides enderman teleport.</p>
+                        <p class="point-desc">Hides empty tooltip.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🌍</span>
+                            <span class="point-title">World age</span>
+                        </div>
+                        <p class="point-desc">Displays the World Age in a GUI.</p>
+                        <p class="point-desc">Sends the World Age in chat when you join a new world.</p>
+                    </li>
                 </ul>
             </div>
-        </div>
-
-        <hr class="category-divider">
-
-        <!-- Command List -->
-        <div class="docs-section command-list">
-            <h2 class="category-title">⚡ Commands</h2>
-            
-            <div class="command-entry">
-                <div class="command-box">
-                    <span class="command-text">/meow help
-                        <button class="copy-btn" data-cmd="/meow help">
-                            <i class="far fa-copy"></i>
-                        </button>
-                    </span>
-                </div>
-                <div class="command-desc">
-                    Display help menu with all available commands
-                    <div class="command-aliases">Aliases: /mhelp, /mh</div>
-                </div>
+            <div class="feature-card">
+                <h3>⚔️ Slayers</h3>
+                <ul class="modern-list">
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">⌛</span>
+                            <span class="point-title">Slayer kill timer</span>
+                        </div>
+                        <p class="point-desc">Shows the amount of time you took to kill your slayer boss, always works unlike skytils smh.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🖊</span>
+                            <span class="point-title">Slayer boss highlight</span>
+                        </div>
+                        <p class="point-desc">Highlights your slayer boss.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🖥</span>
+                            <span class="point-title">Slayer boss info</span>
+                        </div>
+                        <p class="point-desc">Displays information about your slayer boss in a GUI.</p>
+                    </li>
+                </ul>
             </div>
-
-            <div class="command-entry">
-                <div class="command-box">
-                    <span class="command-text">/meow config
-                        <button class="copy-btn" data-cmd="/meow config">
-                            <i class="far fa-copy"></i>
-                        </button>
-                    </span>
-                </div>
-                <div class="command-desc">
-                    Open configuration interface
-                    <div class="command-aliases">Aliases: /mconfig, /mc</div>
-                </div>
+            <div class="feature-card">
+                <h3>🏔 Carrying</h3>
+                <ul class="modern-list">
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🔢</span>
+                            <span class="point-title">Carry counter</span>
+                        </div>
+                        <p class="point-desc">- Counts the carries that you do with a nice GUI.</p>
+                        <p class="point-desc">- Has an option to automatically send the current count in party chat.</p>
+                        <p class="point-desc">- Clean GUI to increase, decrease the total and remove the client</p>
+                        <p class="point-desc">- Plays a cat sound and displays a short title on carry boss spawn.</p>
+                        <p class="point-desc">- Sends a message asking if you want to trade with the player after you finish their carries.</p>
+                        <p class="point-desc">- Calculates an approximate count of how many bosses you can do in an hour (or money/hr)</p>
+                        <p class="point-desc">- Shows the amount of time you took to kill the boss.</p>
+                        <p class="point-desc">- Automatically detect player trade and add the player based on the amount they've traded.</p>
+                        <p class="point-desc">- Highlights the carries's slayer boss.</p>
+                        <p class="point-desc">- Highlights the player you're carrying.</p>
+                        <p class="point-desc"><b>Works for dungeon carries too! Kuudra support planned.</b></p>
+                    </li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>💀 Dungeons</h3>
+                <ul class="modern-list">
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🩸</span>
+                            <span class="point-title">Blood camp timers</span>
+                        </div>
+                        <p class="point-desc">Sends alerts and information messages about the blood camp to both the party and the player.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🎭</span>
+                            <span class="point-title">Mask features</span>
+                        </div>
+                        <p class="point-desc">- Sends alerts in party chat when you activate a mask/phoenix pet.</p>
+                        <p class="point-desc">- Reminds you when you don't have a mask on.</p>
+                        <p class="point-desc">- Shows a HUD displaying the cooldown of your masks.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🐲</span>
+                            <span class="point-title">F7 Features</span>
+                        </div>
+                        <p class="point-desc">- Shows a title when maxor/storm get crushed.</p>
+                        <p class="point-desc">- Shows a title when necron/goldor/storm/maxor die.</p>
+                        <p class="point-desc">- Shows a title when Necron is damageables.</p>
+                        <p class="point-desc">- Timer until P3 starts</p>
+                        <p class="point-desc">- Labels terminals (m7 roles)</p>
+                        <p class="point-desc">- Sends the terminal that you choose in party chat at end of P2.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">📌</span>
+                            <span class="point-title">Misc features</span>
+                        </div>
+                        <p class="point-desc">- Sends a message at the end of the dungeon run showing how long the server lagged for.</p>
+                        <p class="point-desc">- Colors the mimic chest.</p>
+                        <p class="point-desc">- Sends a message on mimic death.</p>
+                        <p class="point-desc">- Timer until livid can be icesprayed.</p>
+                        <p class="point-desc">- Hide non star mob nametags.</p>
+                        <p class="point-desc">- Hide your damage in dungeons.</p>
+                        <p class="point-desc">- Show a title on bat death.</p>
+                        <p class="point-desc">- Announces leap messages in party chat.</p>
+                        <p class="point-desc">- Key spawn alert</p>
+                        <p class="point-desc">- Key pickup alert</p>
+                        <p class="point-desc">- Key highlight</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>🔍 Misc features</h3>
+                <ul class="modern-list">
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">♟️</span>
+                            <span class="point-title">Custom Size</span>
+                        </div>
+                        <p class="point-desc">Changes the player model's x, y, and z size.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🐈</span>
+                            <span class="point-title">Custom Models</span>
+                        </div>
+                        <p class="point-desc">Changes the player model into other mob's models.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🟫</span>
+                            <span class="point-title">Block overlay</span>
+                        </div>
+                        <p class="point-desc">Renders a custom block overlay.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🔔</span>
+                            <span class="point-title">Alerts</span>
+                        </div>
+                        <p class="point-desc">Renders a title on your screen when an ability ends.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🥷</span>
+                            <span class="point-title">Armor HUD</span>
+                        </div>
+                        <p class="point-desc">Renders a HUD showing your current armor.</p>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 
     <script>
-        // Copy functionality
+        // Copy functionality with checkmark
         document.querySelectorAll('.copy-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const cmd = e.currentTarget.dataset.cmd;
