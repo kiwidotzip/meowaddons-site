@@ -387,6 +387,10 @@
         .feature-point:hover::before {
             left: 100%;
         }
+        .search-highlight {
+            background: rgba(78, 205, 196, 0.15) !important;
+            border-left-color: #4ecdc4 !important;
+        }
 
         @media (max-width: 768px) {
             .feature-header {
@@ -799,12 +803,34 @@
 
         // Feature search
         document.getElementById('feature-search').addEventListener('input', (e) => {
-            const term = e.target.value.toLowerCase();
-            document.querySelectorAll('[data-feature]').forEach(section => {
-                const text = section.textContent.toLowerCase();
-                section.style.display = text.includes(term) ? 'block' : 'none';
+        const term = e.target.value.toLowerCase().trim();
+        
+        document.querySelectorAll('.feature-card').forEach(card => {
+            let hasMatches = false;
+            const points = card.querySelectorAll('.feature-point');
+            
+            points.forEach(point => {
+                const text = point.textContent.toLowerCase();
+                const title = point.querySelector('.point-title').textContent.toLowerCase();
+                const isMatch = text.includes(term) || title.includes(term);
+                
+                if (term && isMatch) {
+                    point.style.display = 'block';
+                    point.classList.add('search-highlight');
+                    hasMatches = true;
+                } else if (term) {
+                    point.style.display = 'none';
+                    point.classList.remove('search-highlight');
+                } else {
+                    point.style.display = 'block';
+                    point.classList.remove('search-highlight');
+                }
             });
+
+            // Show/hide entire card based on matches
+            card.style.display = term ? (hasMatches ? 'block' : 'none') : 'block';
         });
+    });
     </script>
 </body>
 </html>
