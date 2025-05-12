@@ -187,10 +187,65 @@
             outline: none;            /* remove default focus outline, if desired */
         }
         @media (max-width: 480px) {
-            .main-tile { padding: 20px; }
-            .title { font-size: 2em; }
-            .info-item { font-size: 0.8em; }
-            .contributors { display: none; }
+            /* General mobile adjustments */
+            body {
+                padding: 15px;
+                background-attachment: scroll;
+            }
+            
+            .main-tile {
+                padding: 20px;
+                border-radius: 15px;
+            }
+            
+            .title {
+                font-size: 2em;
+            }
+            
+            /* Index page specific */
+            .info-item {
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+            
+            .description {
+                font-size: 1em;
+            }
+            
+            .link {
+                width: 100%;
+                justify-content: center;
+                padding: 12px;
+                font-size: 0.95em;
+            }
+            
+            .discord-btn {
+                top: 15px;
+                left: 15px;
+                width: 35px;
+                height: 35px;
+            }
+            
+            /* Navigation adjustments */
+            .nav-button {
+                margin: 5px 0;
+                width: 100%;
+                padding: 12px;
+            }
+        }
+
+        @media (max-width: 350px) {
+            .main-tile {
+                padding: 15px;
+            }
+            
+            .title {
+                font-size: 1.8em;
+            }
+            
+            .info-item {
+                font-size: 0.75em;
+            }
         }
     </style>
 </head>
