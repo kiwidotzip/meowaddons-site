@@ -393,7 +393,6 @@
             border-left-color: #4ecdc4 !important;
         }
         @media (max-width: 480px) {
-            /* General mobile adjustments */
             body {
                 padding: 15px;
                 background-attachment: scroll;
@@ -439,20 +438,17 @@
                 font-size: 1.2em;
             }
             
-            /* Navigation adjustments */
             .nav-button {
                 margin: 5px 0;
                 width: 100%;
                 padding: 12px;
             }
             
-            /* Search input */
             #feature-search {
                 padding: 12px 20px;
                 font-size: 0.95em;
             }
             
-            /* Installation section */
             .install-method code {
                 font-size: 0.85em;
                 word-break: break-all;
@@ -490,8 +486,6 @@
         <div class="nav-container">
             <a href="/" class="nav-button">Home</a>
         </div>
-
-        <!-- Installation Section -->
         <div class="docs-section" data-feature="installation">
             <h2 class="category-title"><i class="fa-solid fa-rocket" style="color:#ffffff"></i> Installation</h2>
             <div class="install-method-group">
@@ -516,15 +510,13 @@
         </div>
 
         <hr class="category-divider">
-
-        <!-- Command List -->
         <div class="docs-section command-list">
             <h2 class="category-title"><i class="fas fa-bolt" style="color:#ffffff"></i> Commands</h2>         
             <div class="command-entry">
                 <div class="command-box">
                     <span class="command-text">/ma help
                         <button class="copy-btn" data-cmd="/ma help">
-                            <i class="far fa-copy"></i>
+                            <i class="fas fa-copy"></i>
                         </button>
                     </span>
                 </div>
@@ -538,7 +530,7 @@
                 <div class="command-box">
                     <span class="command-text">/meowaddons
                         <button class="copy-btn" data-cmd="/ma">
-                            <i class="far fa-copy"></i>
+                            <i class="fas fa-copy"></i>
                         </button>
                     </span>
                 </div>
@@ -551,7 +543,7 @@
                 <div class="command-box">
                     <span class="command-text">/meowaddons gui
                         <button class="copy-btn" data-cmd="/ma gui">
-                            <i class="far fa-copy"></i>
+                            <i class="fas fa-copy"></i>
                         </button>
                     </span>
                 </div>
@@ -564,7 +556,7 @@
                 <div class="command-box">
                     <span class="command-text">/macarry help
                         <button class="copy-btn" data-cmd="/macarry help">
-                            <i class="far fa-copy"></i>
+                            <i class="fas fa-copy"></i>
                         </button>
                     </span>
                 </div>
@@ -577,7 +569,7 @@
                 <div class="command-box">
                     <span class="command-text">/dgcarry help
                         <button class="copy-btn" data-cmd="/madgcarry help">
-                            <i class="far fa-copy"></i>
+                            <i class="fas fa-copy"></i>
                         </button>
                     </span>
                 </div>
@@ -590,7 +582,7 @@
                 <div class="command-box">
                     <span class="command-text">/meowcount
                         <button class="copy-btn" data-cmd="/meowcount">
-                            <i class="far fa-copy"></i>
+                            <i class="fas fa-copy"></i>
                         </button>
                     </span>
                 </div>
@@ -603,7 +595,7 @@
                 <div class="command-box">
                     <span class="command-text">/meowaddons update
                         <button class="copy-btn" data-cmd="/ma update">
-                            <i class="far fa-copy"></i>
+                            <i class="fas fa-copy"></i>
                         </button>
                     </span>
                 </div>
@@ -615,8 +607,6 @@
         </div>
 
         <hr class="category-divider">
-
-        <!-- Features Section -->
         <div class="docs-section" data-feature="fishing">
             <div class="feature-header">
                 <h2 class="category-title"><i class="fa-solid fa-list" style="color:#ffffff"></i> Features</h2>
@@ -851,7 +841,6 @@
     </div>
 
     <script>
-        // Copy functionality with checkmark
         document.querySelectorAll('.copy-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 const cmd = e.currentTarget.dataset.cmd;
@@ -867,8 +856,6 @@
                 }, 2000);
             });
         });
-
-        // Feature search
         document.getElementById('feature-search').addEventListener('input', (e) => {
         const term = e.target.value.toLowerCase().trim();
         
