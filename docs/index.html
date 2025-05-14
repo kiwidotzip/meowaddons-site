@@ -772,3 +772,117 @@
                         <p class="point-desc">- Shows a title when maxor/storm get crushed.</p>
                         <p class="point-desc">- Shows a title when necron/goldor/storm/maxor die.</p>
                         <p class="point-desc">- Shows a title when Necron is damageables.</p>
+                        <p class="point-desc">- Timer until P3 starts</p>
+                        <p class="point-desc">- Labels terminals (m7 roles)</p>
+                        <p class="point-desc">- Sends the terminal that you choose in party chat at end of P2.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">📌</span>
+                            <span class="point-title">Misc features</span>
+                        </div>
+                        <p class="point-desc">- Sends a message at the end of the dungeon run showing how long the server lagged for.</p>
+                        <p class="point-desc">- Colors the mimic chest.</p>
+                        <p class="point-desc">- Sends a message on mimic death.</p>
+                        <p class="point-desc">- Timer until livid can be icesprayed.</p>
+                        <p class="point-desc">- Hide non star mob nametags.</p>
+                        <p class="point-desc">- Hide your damage in dungeons.</p>
+                        <p class="point-desc">- Show a title on bat death.</p>
+                        <p class="point-desc">- Announces leap messages in party chat.</p>
+                        <p class="point-desc">- Key spawn alert</p>
+                        <p class="point-desc">- Key pickup alert</p>
+                        <p class="point-desc">- Key highlight</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="feature-card">
+                <h3>🔍 Misc features</h3>
+                <ul class="modern-list">
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">♟️</span>
+                            <span class="point-title">Custom Size</span>
+                        </div>
+                        <p class="point-desc">Changes the player model's x, y, and z size.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🐈</span>
+                            <span class="point-title">Custom Models</span>
+                        </div>
+                        <p class="point-desc">Changes the player model into other mob's models.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🟫</span>
+                            <span class="point-title">Block overlay</span>
+                        </div>
+                        <p class="point-desc">Renders a custom block overlay.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🔔</span>
+                            <span class="point-title">Alerts</span>
+                        </div>
+                        <p class="point-desc">Renders a title on your screen when an ability ends.</p>
+                    </li>
+                    <li class="feature-point">
+                        <div class="point-header">
+                            <span class="point-icon">🥷</span>
+                            <span class="point-title">Armor HUD</span>
+                        </div>
+                        <p class="point-desc">Renders a HUD showing your current armor.</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.copy-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const cmd = e.currentTarget.dataset.cmd;
+                navigator.clipboard.writeText(cmd);
+                
+                const icon = e.currentTarget.querySelector('i');
+                icon.classList.remove('fa-copy');
+                icon.classList.add('fa-check');
+                
+                setTimeout(() => {
+                    icon.classList.remove('fa-check');
+                    icon.classList.add('fa-copy');
+                }, 2000);
+            });
+        });
+        document.getElementById('feature-search').addEventListener('input', (e) => {
+        const term = e.target.value.toLowerCase().trim();
+        
+        document.querySelectorAll('.feature-card').forEach(card => {
+            let hasMatches = false;
+            const points = card.querySelectorAll('.feature-point');
+            
+            points.forEach(point => {
+                const text = point.textContent.toLowerCase();
+                const title = point.querySelector('.point-title').textContent.toLowerCase();
+                const isMatch = text.includes(term) || title.includes(term);
+                
+                if (term && isMatch) {
+                    point.style.display = 'block';
+                    point.classList.add('search-highlight');
+                    hasMatches = true;
+                } else if (term) {
+                    point.style.display = 'none';
+                    point.classList.remove('search-highlight');
+                } else {
+                    point.style.display = 'block';
+                    point.classList.remove('search-highlight');
+                }
+            });
+
+            // Show/hide entire card based on matches
+            card.style.display = term ? (hasMatches ? 'block' : 'none') : 'block';
+        });
+    });
+    </script>
+</body>
+</html>
