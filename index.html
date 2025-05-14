@@ -303,23 +303,16 @@
 
     async function fetchDownloads() {
         try {
-            const githubResponse = await fetch('https://api.github.com/repos/kiwidotzip/MeowAddons/releases');
-            const githubData = await githubResponse.json();
-            let githubDownloads = githubData.reduce((total, release) => total + release.assets.reduce((acc, asset) => acc + asset.download_count, 0), 0);
-            const ctResponse = await fetch(`https://api.allorigins.win/get?url=${encodeURIComponent('https://chattriggers.com/api/modules/MeowAddons')}`);
-            const ctProxyData = await ctResponse.text();
-            const parsedData = JSON.parse(ctProxyData);
-            const ctData = JSON.parse(parsedData.contents);
-            let ctDownloads = ctData.downloads;
-            const totalDownloads = githubDownloads + ctDownloads;
+            const Response = await fetch('https://meowaddons.kiwidotzip.workers.dev/');
+            const Data = await Response.json();
             const countElement = document.getElementById('download-count');
-            countElement.textContent = totalDownloads.toLocaleString();
-            countElement.dataset.tooltip = `GitHub: ${githubDownloads.toLocaleString()} | CT: ${ctDownloads.toLocaleString()}`;
+            countElement.textContent = Data.toLocaleString();
         } catch (mainError) {
             console.error('Main error:', mainError);
             document.getElementById('download-count').textContent = '4k+';
         }
     }
+    setInterval(fetchDownloads, 300000)
     window.addEventListener('load', fetchDownloads);
     </script>
 </body>
